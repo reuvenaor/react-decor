@@ -1,0 +1,5 @@
+{
+  "_comment": "at-tsc integration fixture — the FAILING project (exit 1: a wrong prop type inside a call-form decorator, caught because virtualization makes `;Card({...})` a real type-checked call).",
+  "extends": "./tsconfig.json",
+  "include": ["composers.tsx", "bad.at.tsx"]
+}

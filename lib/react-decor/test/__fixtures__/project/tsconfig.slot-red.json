@@ -1,0 +1,5 @@
+{
+  "_comment": "at-tsc integration fixture — pass-2 RED: slot-red.at.tsx is virtualization-green but its real spliced output carries a TS2322.",
+  "extends": "./tsconfig.json",
+  "include": ["slot-red.at.tsx"]
+}

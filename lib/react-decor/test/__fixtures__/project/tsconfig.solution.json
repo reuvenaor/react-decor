@@ -1,0 +1,5 @@
+{
+  "_comment": "Solution-style config (files: [] + references) — at-tsc must recurse into the referenced project, mirroring the repo root tsconfig layout.",
+  "files": [],
+  "references": [{ "path": "./tsconfig.json" }]
+}

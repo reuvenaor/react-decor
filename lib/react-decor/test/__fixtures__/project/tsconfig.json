@@ -1,0 +1,15 @@
+{
+  "_comment": "at-tsc integration fixture — the CLEAN project (exit 0). Raw @ sources in this directory are unreadable by every standard tool; the repo root ignores __fixtures__ in eslint + prettier, and the lib tsconfig excludes it. The plugins entry is inert for at-tsc/tsc and feeds the tsserver integration test (tsserver.integration.test.ts).",
+  "compilerOptions": {
+    "plugins": [{ "name": "react-decor-ts-plugin" }],
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["composers.tsx", "ok.at.tsx", "float.at.tsx"]
+}
