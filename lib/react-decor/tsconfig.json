@@ -1,0 +1,20 @@
+{
+  "_comment": "Authoring config for the react-decor lib. The whole runtime is plain CommonJS with hand-written .d.cts twins as the type source for consumers — CJS is the one flavor every host loads natively: tsserver require()s the plugin, Vite/vitest config loaders externalize the bare 'react-decor/vite' specifier to a native Node import, ESLint flat config imports through Node's CJS interop, and the at-tsc bin runs buildless. ESLint's projectService picks this config up as the nearest tsconfig for lib files. test/__fixtures__ holds raw-@ sources that no standard parser can read — excluded here and ignored by eslint + prettier at the repo root.",
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "lib": ["ES2023"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "types": ["node"]
+  },
+  "include": ["src", "bin", "ts-plugin", "test", "vitest.config.ts"],
+  "exclude": ["test/__fixtures__"]
+}

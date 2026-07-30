@@ -1,0 +1,93 @@
+{
+  "name": "react-decor",
+  "version": "0.3.0",
+  "type": "module",
+  "description": "Compile-time @ decorators for React function components — pure JSX composition, zero runtime, no HOCs.",
+  "license": "MIT",
+  "author": "Reuven Naor <reuvenaor85@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reuvenaor/react-decor.git",
+    "directory": "lib/react-decor"
+  },
+  "homepage": "https://github.com/reuvenaor/react-decor#readme",
+  "bugs": "https://github.com/reuvenaor/react-decor/issues",
+  "keywords": [
+    "react",
+    "decorators",
+    "jsx",
+    "composition",
+    "compile-time",
+    "zero-runtime",
+    "vite-plugin",
+    "webpack-loader",
+    "turbopack",
+    "eslint-plugin"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "bin": {
+    "at-tsc": "./bin/at-tsc.cjs"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./vite": {
+      "types": "./src/vite.d.cts",
+      "default": "./src/vite.cjs"
+    },
+    "./webpack": {
+      "types": "./src/webpack.d.cts",
+      "default": "./src/webpack.cjs"
+    },
+    "./transform": {
+      "types": "./src/transform.d.cts",
+      "default": "./src/transform.cjs"
+    },
+    "./scan": {
+      "types": "./src/scan.d.cts",
+      "default": "./src/scan.cjs"
+    },
+    "./virtualize": {
+      "types": "./src/virtualize.d.cts",
+      "default": "./src/virtualize.cjs"
+    },
+    "./eslint-parser": {
+      "types": "./src/eslint-parser.d.cts",
+      "default": "./src/eslint-parser.cjs"
+    },
+    "./eslint": {
+      "types": "./src/eslint.d.cts",
+      "default": "./src/eslint.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "magic-string": "~0.30.21"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/parser": ">=8",
+    "react": ">=18",
+    "typescript": ">=5.0",
+    "vite": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "@typescript-eslint/parser": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "vite": {
+      "optional": true
+    }
+  }
+}
