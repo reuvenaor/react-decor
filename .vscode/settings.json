@@ -1,0 +1,12 @@
+{
+  // react-decor IDE support: *.at.tsx language service goes through react-decor-ts-plugin
+  // (declared in tsconfig.app.json "plugins"), and tsserver only loads workspace-local
+  // plugins when the WORKSPACE TypeScript runs the language service. tsdk pins where
+  // "TypeScript: Select TypeScript Version → Use Workspace Version" points, and the
+  // prompt setting offers the switch automatically on first open. Without it, VS Code's
+  // built-in TS parses raw `@` on function components → phantom ts(1206) "Decorators
+  // are not valid here" / ts(6133) unused-import squiggles in every *.at.tsx file.
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
+}

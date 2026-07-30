@@ -1,0 +1,21 @@
+node_modules
+dist
+build
+.react-router
+dist-ssr
+test-results
+playwright-report
+.playwright/.cache
+*.local
+.env
+tsconfig.tsbuildinfo
+tsconfig.*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# wrangler dev local state (created by the deploy-rehearsal step)
+.wrangler/
+
+# local claude settings (machine-specific)
+.claude/settings.local.json

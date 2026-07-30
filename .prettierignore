@@ -1,0 +1,12 @@
+node_modules
+dist
+build
+.react-router
+test-results
+package-lock.json
+lib/react-decor/test/__fixtures__/
+# react-decor decorated files: raw @ on functions is unparseable by Prettier by design —
+# the *.at.tsx surface is hand-formatted; keep long class strings in composer components.
+*.at.tsx
+examples/react-router/src/components/ui
+shared/styles/theme.app.css
