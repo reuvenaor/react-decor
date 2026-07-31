@@ -1,0 +1,13 @@
+{
+  "_comment": "Shared compiler options for the app, node, and e2e TS projects. Each leaf tsconfig `extends` this and adds only its own lib/types/jsx/paths/include. Keeps the common baseline in one place instead of repeating it three times.",
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true
+  }
+}
