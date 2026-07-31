@@ -1,0 +1,69 @@
+{
+  "name": "react-decor-docs",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "workspaces": [
+    "examples/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w examples/react-router",
+    "dev:rr": "npm run dev -w examples/react-router",
+    "dev:next": "npm run dev -w examples/nextjs",
+    "kill-port": "lsof -ti:5173 | xargs kill -9 2>/dev/null || true",
+    "build": "npm run build -w examples/react-router && npm run build -w examples/nextjs",
+    "preview": "npm run preview -w examples/react-router",
+    "typecheck": "npm run typecheck -w examples/react-router && npm run typecheck -w examples/nextjs && at-tsc -p lib/react-decor/tsconfig.json --noEmit && tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.e2e.json --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "lib:pack": "node scripts/lib-pack.mjs",
+    "verify:vendor": "node scripts/verify-vendor.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs,cjs}": [
+      "eslint --fix --no-warn-ignored",
+      "prettier --write"
+    ],
+    "*.{json,css,md,html,yml,yaml}": "prettier --write --ignore-unknown"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "~4.10.0",
+    "@commitlint/cli": "~21.0.2",
+    "@commitlint/config-conventional": "~21.0.2",
+    "@eslint-community/eslint-plugin-eslint-comments": "~4.7.1",
+    "@eslint/js": "~9.39.4",
+    "@jridgewell/trace-mapping": "~0.3.31",
+    "@next/eslint-plugin-next": "^16.2.10",
+    "@playwright/test": "~1.61.0",
+    "@types/node": "~22.19.19",
+    "@types/react": "~19.2.15",
+    "@types/react-dom": "~19.2.3",
+    "eslint": "~9.39.4",
+    "eslint-config-prettier": "~10.1.8",
+    "eslint-plugin-i18next": "~6.1.4",
+    "eslint-plugin-import": "~2.32.0",
+    "eslint-plugin-jsx-a11y": "~6.10.2",
+    "eslint-plugin-react": "~7.37.5",
+    "eslint-plugin-react-hooks": "~7.1.1",
+    "eslint-plugin-react-refresh": "~0.5.2",
+    "globals": "~17.6.0",
+    "husky": "~9.1.7",
+    "lint-staged": "~17.0.7",
+    "magic-string": "~0.30.21",
+    "prettier": "~3.8.3",
+    "prettier-plugin-tailwindcss": "~0.8.0",
+    "react": "~19.2.6",
+    "react-decor": "file:vendor/react-decor-0.3.0.tgz",
+    "react-decor-ts-plugin": "file:vendor/react-decor-ts-plugin-0.3.0.tgz",
+    "react-dom": "~19.2.6",
+    "serve": "^14.2.6",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "~8.59.4",
+    "vitest": "~4.1.10"
+  }
+}
