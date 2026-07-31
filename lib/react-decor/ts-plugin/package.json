@@ -1,0 +1,32 @@
+{
+  "name": "react-decor-ts-plugin",
+  "version": "0.3.0",
+  "description": "tsserver plugin serving react-decor decorated files to the language service through same-length virtualization. Its own package because tsserver only loads bare package names (typescript.js: \"only package name is allowed plugin name\").",
+  "license": "MIT",
+  "author": "Reuven Naor <reuvenaor85@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reuvenaor/react-decor.git",
+    "directory": "lib/react-decor/ts-plugin"
+  },
+  "homepage": "https://github.com/reuvenaor/react-decor#readme",
+  "bugs": "https://github.com/reuvenaor/react-decor/issues",
+  "keywords": [
+    "react",
+    "react-decor",
+    "tsserver-plugin",
+    "typescript-plugin",
+    "decorators"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "type": "commonjs",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "react-decor": "^0.3.0"
+  }
+}
