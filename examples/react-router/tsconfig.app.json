@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "useDefineForClassFields": true,
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "erasableSyntaxOnly": true,
+    "rootDirs": [".", "./.react-router/types"],
+    "types": ["node", "vite/client"],
+    "plugins": [{ "name": "@react-router/dev" }, { "name": "react-decor-ts-plugin" }],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["../../shared/*"]
+    }
+  },
+  "include": [".react-router/types/**/*", "src/**/*", "../../shared/**/*"]
+}

@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],
+  "_comment": "Solution-style tsconfig (files: []) — compiles nothing; the real build config is tsconfig.app.json. The compilerOptions.paths below exist ONLY so the shadcn CLI, which reads path aliases from the project-root tsconfig, resolves `@/*` to ./src/* and writes components to src/components/ui/ instead of a literal ./@/ directory. Keep this mapping in sync with tsconfig.app.json.",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

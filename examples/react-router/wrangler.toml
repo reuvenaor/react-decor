@@ -1,0 +1,21 @@
+# Cloudflare deploy config for the react-decor documentation site.
+#
+# Deployed as a Cloudflare WORKER serving STATIC ASSETS (no Worker code — the React Router 7
+# SPA, ssr:false + prerendered, is prebuilt to build/client and uploaded as the Worker's
+# assets). `wrangler deploy` needs the [assets] directory below — NOT the Pages-only
+# `pages_build_output_dir`, which `wrangler deploy` ignores.
+#
+# Build command:  npm install && npm run build      ->  build/client/
+# Deploy:         npx wrangler deploy                (or Cloudflare Workers Builds, on push)
+# NOTE for Cloudflare CI builds: regenerate package-lock.json with node 22.16.0 /
+# npm 10.9.2 first — Cloudflare's `npm ci` is pinned to that toolchain.
+name = "react-decor-docs"
+compatibility_date = "2026-10-10"
+
+[assets]
+directory = "./build/client"
+# SPA fallback: serve index.html for any unknown client route so React Router can client-route it.
+# Do NOT add a `_redirects` catch-all (e.g. `/* /__spa-fallback.html 200`) here — combined with
+# Cloudflare's automatic .html handling it causes a /__spa-fallback redirect loop. `not_found_handling`
+# is the correct SPA fallback mechanism for Workers static assets.
+not_found_handling = "single-page-application"
