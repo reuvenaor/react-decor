@@ -1,0 +1,134 @@
+/* Shared Tailwind v4 layer for BOTH example apps. Each app's css entry does:
+     @import 'tailwindcss';
+     @import '<relative>/shared/styles/index.css';
+   Tailwind's auto content detection only scans the importing app's own tree
+   (the build cwd), so this stylesheet registers the shared source dir itself —
+   @source resolves relative to the stylesheet that contains it. */
+@source '../';
+
+@import './theme.app.css';
+
+/* Class-based dark mode: `dark:` utilities key off a `.dark` ancestor (set by
+   next-themes `attribute="class"`), not `prefers-color-scheme`.
+
+   The design tokens (OKLCH) live in `./theme.app.css` — a static, committed palette
+   (`supabase`, vendored from tweakcn). The `@theme inline` block below maps each token
+   to a Tailwind colour utility (`bg-primary`, `text-foreground`, …). Tokens swap via
+   the `.dark` block in theme.app.css, so theming works through both the CSS-variable
+   cascade and `dark:` variants. */
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Always-visible focus ring for keyboard users (WCAG 2.4.7 AA / IS 5568). */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Honor user reduced-motion preference (WCAG 2.3.3 AAA — strongly recommended). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* Skip-link helper: visually hidden until focused. Each app renders
+   `<a href="#main" className="skip-link">Skip to content</a>` as the first
+   focusable element inside <body>, and puts `<main id="main">` on the route. */
+@layer components {
+  .skip-link {
+    position: absolute;
+    inset-inline-start: 0;
+    top: 0;
+    z-index: 50;
+    transform: translateY(-200%);
+    background: var(--background);
+    color: var(--foreground);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px hsl(0 0% 0% / 0.15);
+    transition: transform 150ms;
+  }
+  .skip-link:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+/* ── Motion utilities ──────────────────────────────────────────────────────
+   Animated gradient text, driven by shared/components/motion/gradient-text.tsx.
+   Motion is disabled under prefers-reduced-motion (and globally near-zeroed by
+   the @layer base reduced-motion override above). */
+@keyframes gradient-shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .gradient-text-animated {
+    background-size: 200% auto;
+    animation: gradient-shine 6s linear infinite;
+  }
+}
+
+/* View-transition navigations (react-router `viewTransition` links): all VT animation
+   is disabled under reduced motion, so route changes snap instantly. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
