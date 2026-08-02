@@ -1,0 +1,9 @@
+{
+  "_comment": "Type-check config for the Playwright e2e suite. Kept separate from tsconfig.app.json (app build) so test globals/imports never leak into the app program, and referenced from the root solution tsconfig so eslint's type-aware projectService resolves e2e/*.ts.",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node"]
+  },
+  "include": ["e2e/**/*.ts"]
+}

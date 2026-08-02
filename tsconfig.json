@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./examples/react-router/tsconfig.app.json" },
+    { "path": "./examples/react-router/tsconfig.node.json" },
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.e2e.json" }
+  ],
+  "_comment": "Root solution-style tsconfig (files: []) — compiles nothing; it exists so editor tooling and eslint's type-aware projectService resolve every leaf project. Each example app carries its own solution tsconfig (with the @/* paths the shadcn CLI reads)."
+}
