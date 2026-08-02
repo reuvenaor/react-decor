@@ -1,0 +1,7 @@
+# Default owners for everything in the repo — requested for review on every PR.
+* @reuvenaor
+
+# The library itself and its publish surface.
+/lib/react-decor/ @reuvenaor
+/vendor/ @reuvenaor
+/.github/ @reuvenaor

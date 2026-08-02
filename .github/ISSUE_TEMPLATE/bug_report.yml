@@ -1,0 +1,57 @@
+name: Bug report
+description: Something in react-decor misbehaves — a wrong transform, a bogus diagnostic, a tool that breaks on *.at.tsx
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! Security issues go through [SECURITY.md](../blob/main/SECURITY.md), never a public issue.
+  - type: input
+    id: version
+    attributes:
+      label: react-decor version
+      placeholder: 0.3.0
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Which surface?
+      multiple: true
+      options:
+        - Transform output (wrong/unexpected JSX)
+        - Vite plugin (react-decor/vite)
+        - webpack / Turbopack loader (react-decor/webpack)
+        - at-tsc (type gate)
+        - tsserver plugin (react-decor-ts-plugin / editor)
+        - ESLint parser or a react-decor/* rule
+        - AT diagnostic (wrong code, wrong span, or missing)
+        - Docs / examples
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal *.at.tsx reproduction
+      description: The smallest decorated snippet that shows the problem.
+      render: tsx
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual
+      description: What you expected the transform/tool to do, and what happened instead. Paste the AT-coded diagnostic verbatim if there is one.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Bundler + version (Vite/Next/webpack), TypeScript version, Node version, OS.
+      placeholder: |
+        Vite 8.0.x / Next 16.x
+        TypeScript 6.0.x
+        Node 22.x, macOS 15
+    validations:
+      required: true

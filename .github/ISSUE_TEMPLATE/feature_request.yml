@@ -1,0 +1,33 @@
+name: Feature request
+description: Propose a new capability, placement, convention, or lint rule
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The composition problem
+      description: What do you have to write today that react-decor should remove or enforce? A before snippet says more than a paragraph.
+      render: tsx
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed shape
+      description: What would the decorated source look like, and what JSX should it compile into?
+      render: tsx
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Including "why the existing forms/placements/$at don't already cover this".
+  - type: checkboxes
+    id: constraints
+    attributes:
+      label: Fit with the library's constraints
+      options:
+        - label: Still compiles away completely (zero runtime, no HOCs)
+        - label: Expressible in the same-length virtualization (toolchain stays green)
+        - label: Mechanically enforceable (a lint rule or an AT diagnostic can police it)

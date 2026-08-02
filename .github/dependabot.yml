@@ -1,0 +1,17 @@
+version: 2
+updates:
+  # Root lockfile covers the workspaces; the react-decor lib itself is consumed
+  # via committed vendor/ tarballs (file: deps) and is not registry-updatable.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      minor-and-patch:
+        update-types: ['minor', 'patch']
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
