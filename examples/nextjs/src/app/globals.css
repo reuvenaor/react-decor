@@ -1,0 +1,5 @@
+/* App css entry: Tailwind first, then the shared layer (tokens, dark variant,
+   base layers, skip-link, motion utilities — and the @source registration that
+   makes Tailwind scan shared/ for classes). App-local css belongs below. */
+@import 'tailwindcss';
+@import '../../../../shared/styles/index.css';
