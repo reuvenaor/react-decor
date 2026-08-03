@@ -176,7 +176,8 @@ Two example apps ship in this repo and compose the **same shared sections** — 
 user-visible section of the docs site is written with react-decor:
 
 - [examples/react-router](examples/react-router) — React Router 8 (framework mode,
-  SPA + prerender) on Vite 8, compiled by `react-decor/vite`. The docs site.
+  SPA + prerender) on Vite 8, compiled by `react-decor/vite`. The docs site — live at
+  [react-decor.com](https://react-decor.com).
 - [examples/nextjs](examples/nextjs) — Next 16 (App Router, Turbopack,
   `output: 'export'`), compiled by the `react-decor/webpack` loader.
 
@@ -201,8 +202,8 @@ npm run test:e2e    # the 27-test Playwright suite × both apps
 - [.claude/rules/keyed-tile-convention.md](.claude/rules/keyed-tile-convention.md) —
   the keyed-tile / full-strip authoring convention the examples follow (and the eight
   lint rules enforce).
-- The docs site itself (`/` pitch, `/docs` reference with live demos) — run
-  `npm run dev`.
+- The docs site itself (`/` pitch, `/docs` reference with live demos) —
+  [react-decor.com](https://react-decor.com), or run `npm run dev`.
 
 ## Repository layout
 

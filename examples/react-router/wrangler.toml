@@ -5,12 +5,22 @@
 # assets). `wrangler deploy` needs the [assets] directory below — NOT the Pages-only
 # `pages_build_output_dir`, which `wrangler deploy` ignores.
 #
-# Build command:  npm install && npm run build      ->  build/client/
-# Deploy:         npx wrangler deploy                (or Cloudflare Workers Builds, on push)
-# NOTE for Cloudflare CI builds: regenerate package-lock.json with node 22.16.0 /
-# npm 10.9.2 first — Cloudflare's `npm ci` is pinned to that toolchain.
+# Deployed via Cloudflare Workers Builds (GitHub-connected: every push to main
+# builds + deploys). Dashboard settings for this monorepo:
+#   Root directory:  /                (workspace install must run at the repo root)
+#   Build command:   npm ci && npm run build -w examples/react-router
+#   Deploy command:  npx wrangler deploy --config examples/react-router/wrangler.toml
+#   Build env var:   NODE_VERSION=22
+# Manual fallback (rarely needed): npx wrangler deploy --config examples/react-router/wrangler.toml
 name = "react-decor-docs"
 compatibility_date = "2026-10-10"
+
+# Custom domains (zone lives in the same Cloudflare account): wrangler provisions
+# DNS records + certificates for these automatically on deploy.
+routes = [
+  { pattern = "react-decor.com", custom_domain = true },
+  { pattern = "www.react-decor.com", custom_domain = true },
+]
 
 [assets]
 directory = "./build/client"
