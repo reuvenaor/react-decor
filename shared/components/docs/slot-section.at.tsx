@@ -14,10 +14,10 @@ const SlotDemo = () => {
   const { t } = useTranslation()
   return (
     <DemoPanel>
-      @(<Button asChild />)
+      @(<Button asChild className="h-auto min-w-0 whitespace-normal" />)
       <Link to="/" viewTransition>
         {t('docs.slot.demo_label')}
-        <ArrowRight className="size-4 rtl:-scale-x-100" aria-hidden="true" />
+        <ArrowRight className="size-4 shrink-0 rtl:-scale-x-100" aria-hidden="true" />
       </Link>
     </DemoPanel>
   )

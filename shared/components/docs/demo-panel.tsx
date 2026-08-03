@@ -14,7 +14,7 @@ export function DemoPanel({ children, className }: { children: ReactNode; classN
     <div
       data-demo-panel=""
       className={cn(
-        'border-border bg-background relative flex min-w-0 flex-col items-start gap-4 rounded-xl border border-dashed p-5 pt-9',
+        'border-border bg-background relative flex w-full min-w-0 flex-col items-start gap-4 overflow-x-auto rounded-xl border border-dashed p-5 pt-9',
         className,
       )}
     >
