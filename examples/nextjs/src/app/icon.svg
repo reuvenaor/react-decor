@@ -1,14 +1,57 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <rect width="24" height="24" rx="6" fill="oklch(0.18 0 0)" />
-  <g
-    transform="translate(4.2 4.2) scale(0.65)"
-    fill="none"
-    stroke="oklch(0.8348 0.1302 160.908)"
-    stroke-width="3"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-  >
-    <circle cx="12" cy="12" r="4" />
-    <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+
+    <!-- Subtle Glow Filter for Icon Crispness -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Stronger Ambient Glow for Orbits -->
+    <filter id="ambient-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="14" result="blur" />
+      <feComponentTransfer in="blur" result="glow1">
+        <feFuncA type="linear" slope="0.7"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode in="glow1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Spark Path Definition (Enlarged for stronger presence) -->
+    <g id="spark">
+      <path d="M 0 -45 Q 0 0 45 0 Q 0 0 0 45 Q 0 0 -45 0 Q 0 0 0 -45 Z" />
+    </g>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="512" height="512" rx="100" ry="100" fill="#000000" />
+
+  <!-- Orbits (Ambient Backlight) -->
+  <g fill="none" stroke="#3b82f6" stroke-width="20" filter="url(#ambient-glow)" opacity="0.4">
+    <ellipse cx="256" cy="256" rx="75" ry="190" />
+    <ellipse cx="256" cy="256" rx="75" ry="190" transform="rotate(60 256 256)" />
+    <ellipse cx="256" cy="256" rx="75" ry="190" transform="rotate(120 256 256)" />
   </g>
+
+  <!-- Orbits (Crisp Icon Lines) -->
+  <g fill="none" stroke="#22d3ee" stroke-width="12" filter="url(#glow)">
+    <ellipse cx="256" cy="256" rx="75" ry="190" />
+    <ellipse cx="256" cy="256" rx="75" ry="190" transform="rotate(60 256 256)" />
+    <ellipse cx="256" cy="256" rx="75" ry="190" transform="rotate(120 256 256)" />
+  </g>
+
+  <!-- Nucleus -->
+  <circle cx="256" cy="256" r="42" fill="#e879f9" filter="url(#glow)" />
+
+  <!-- Sparks -->
+  <!-- Top Right Pink Spark -->
+  <use href="#spark" x="420" y="115" fill="#e879f9" filter="url(#glow)" />
+  
+  <!-- Bottom Left Blue Spark -->
+  <use href="#spark" x="95" y="380" fill="#38bdf8" filter="url(#glow)" />
 </svg>
