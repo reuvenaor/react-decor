@@ -15,11 +15,24 @@ updates:
       # ^9); lift when the plugin ecosystem ships eslint-10 peer support.
       - dependency-name: eslint
         update-types: ['version-update:semver-major']
-      # React Router 8 is a deliberate migration — all three RR packages move
+      # React Router majors are a deliberate migration — the RR packages move
       # together in one intentional change, not via per-package bot bumps.
       - dependency-name: react-router
         update-types: ['version-update:semver-major']
       - dependency-name: '@react-router/*'
+        update-types: ['version-update:semver-major']
+      # Same eslint-10 family as eslint itself.
+      - dependency-name: '@eslint/js'
+        update-types: ['version-update:semver-major']
+      # Types track the Node major actually in use (CI + engines).
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
+      # The library's runtime dep — moves via a deliberate lib release
+      # (bump lib range, repack vendor, publish), never a root-only bump.
+      - dependency-name: magic-string
+        update-types: ['version-update:semver-major']
+      # Icon-set majors are reviewed manually.
+      - dependency-name: lucide-react
         update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
