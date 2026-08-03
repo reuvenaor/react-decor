@@ -9,9 +9,10 @@
 // Hosts the reused <ThemeToggle /> control, the primary nav (a react-router <Link>
 // for /docs; literal lowercase <a> anchors for hash targets, which can never be
 // directives) and the "Get started" CTA. All visible copy flows through i18n. The
-// asChild composition sites (CTA Button, SheetTrigger, SheetClose) ride in-tree
-// @ directives; the Radix Sheet's content-bearing parts and the motion.header
-// machinery stay literal.
+// asChild composition sites (CTA Button, SheetTrigger, SheetClose) ride @
+// directives; the Radix Sheet's content-bearing parts and the motion.header
+// machinery stay literal. The sheet nav staggers in on open via the site's own
+// Stagger/StaggerItem primitives (immediate mode — reduced-motion aware).
 //
 // The brand link and desktop nav items are decorated atoms (HeaderBrand, NavItem —
 // return-position @Link; hash anchors render a literal lowercase <a>). asChild
@@ -24,6 +25,7 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'motion
 import { Menu } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { ThemeToggle } from '@shared/components/app/theme-toggle.at'
+import { Stagger, StaggerItem } from '@shared/components/motion/stagger'
 import { BrandMark } from '@shared/components/site/brand-mark'
 import { BRAND } from '@shared/lib/brand'
 import { Button } from '@/components/ui/button'
@@ -149,27 +151,32 @@ export function SiteHeader() {
                   </SheetDescription>
                 </SheetHeader>
 
-                <nav aria-label={t('nav.primary')} className="mt-6 flex flex-col gap-1">
-                  {NAV_LINKS.map((link) => {
-                    @(<SheetClose asChild key={link.key} />)
-                    return link.hash ? (
-                      <a href={link.to} className={MOBILE_LINK}>
-                        {t(`header.nav.${link.key}`)}
-                      </a>
-                    ) : (
-                      <Link to={link.to} viewTransition className={MOBILE_LINK}>
-                        {t(`header.nav.${link.key}`)}
+                <nav aria-label={t('nav.primary')} className="mt-6">
+                  <Stagger immediate className="flex flex-col gap-1">
+                    {NAV_LINKS.map((link) => {
+                      @(<StaggerItem key={link.key} />)
+                      @(<SheetClose asChild />)
+                      return link.hash ? (
+                        <a href={link.to} className={MOBILE_LINK}>
+                          {t(`header.nav.${link.key}`)}
+                        </a>
+                      ) : (
+                        <Link to={link.to} viewTransition className={MOBILE_LINK}>
+                          {t(`header.nav.${link.key}`)}
+                        </Link>
+                      )
+                    })}
+                    <StaggerItem className="mt-2">
+                      @(<SheetClose asChild />)
+                      <Link
+                        to="/docs"
+                        viewTransition
+                        className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring block rounded-md px-3 py-2 text-center text-base font-medium transition-colors focus-visible:ring-1 focus-visible:outline-none"
+                      >
+                        {t('header.cta')}
                       </Link>
-                    )
-                  })}
-                  @(<SheetClose asChild />)
-                  <Link
-                    to="/docs"
-                    viewTransition
-                    className="bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring mt-2 rounded-md px-3 py-2 text-center text-base font-medium transition-colors focus-visible:ring-1 focus-visible:outline-none"
-                  >
-                    {t('header.cta')}
-                  </Link>
+                    </StaggerItem>
+                  </Stagger>
                 </nav>
               </SheetContent>
             </Sheet>

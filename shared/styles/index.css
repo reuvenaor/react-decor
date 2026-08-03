@@ -8,6 +8,10 @@
 
 @import './theme.app.css';
 
+/* Animation utilities (animate-in/out, slide-in-from-*, fade-*) used by the
+   shadcn overlays — the Radix Sheet's open/close transitions run on these. */
+@import 'tw-animate-css';
+
 /* Class-based dark mode: `dark:` utilities key off a `.dark` ancestor (set by
    next-themes `attribute="class"`), not `prefers-color-scheme`.
 
