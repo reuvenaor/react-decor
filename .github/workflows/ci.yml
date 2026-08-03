@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # vendor/ tarballs are committed, so npm ci is offline-first for the lib.
+      - run: npm ci
+
+      # Parity gate: everything below tests the INSTALLED vendor tarballs, but a
+      # release publishes lib SOURCE — fail here when lib/ changed without lib:pack.
+      - run: npm run verify:vendor
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      # The react-decor library suite (transform, scanner, eslint rules,
+      # tsserver integration).
+      - run: npm run test
+
+      # Both example apps: react-router prerender + Next static export.
+      - run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      # The parity proof: the SAME 27 specs run against both apps (54 runs).
+      # Playwright owns both web servers (see playwright.config.ts webServer).
+      - run: npm run test:e2e
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
+
+  # Consumer compatibility matrix: packs the tarballs from lib source and drives
+  # every surface (transform, AT diagnostics, at-tsc, a real react-dom render of
+  # the output, the eslint rules) in a scratch project pinned to each pair —
+  # proving the supported floors independently of this repo's own toolchain.
+  compat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - ts: '5.0.4' # TypeScript floor
+            react: '18' # React floor
+          - ts: '5.8.3'
+            react: '18'
+          - ts: 'latest' # ceiling-drift canary
+            react: 'latest'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: ts ${{ matrix.ts }} × react ${{ matrix.react }}
+        run: node scripts/compat-check.mjs --ts ${{ matrix.ts }} --react ${{ matrix.react }}
