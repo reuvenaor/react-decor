@@ -45,7 +45,7 @@ jobs:
       - name: Install Playwright Chromium
         run: npx playwright install --with-deps chromium
 
-      # The parity proof: the SAME 27 specs run against both apps (54 runs).
+      # The parity proof: the SAME 28 specs run against both apps (56 runs).
       # Playwright owns both web servers (see playwright.config.ts webServer).
       - run: npm run test:e2e
 

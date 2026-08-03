@@ -31,7 +31,7 @@ npm run build        # rr prerender → examples/react-router/build/client/
 npm run typecheck    # per-app typegen + at-tsc (rr, next) + at-tsc lib + tsc (node, e2e)
 npm run lint         # eslint (react-decor + @next/next rules included); lint:fix to autofix
 npm run test         # vitest — the react-decor library suite (230 cases)
-npm run test:e2e     # playwright: the 27-test suite × BOTH apps (54 runs)
+npm run test:e2e     # playwright: the 28-test suite × BOTH apps (56 runs)
 npm run lib:pack     # after editing lib/react-decor: re-pack tarballs + refresh installs
 ```
 

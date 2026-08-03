@@ -181,7 +181,7 @@ user-visible section of the docs site is written with react-decor:
 - [examples/nextjs](examples/nextjs) — Next 16 (App Router, Turbopack,
   `output: 'export'`), compiled by the `react-decor/webpack` loader.
 
-One Playwright suite runs against **both** apps (27 tests × 2). Because both compose
+One Playwright suite runs against **both** apps (28 tests × 2). Because both compose
 byte-identical `*.at.tsx` sources through two different bundler integrations, a green
 suite proves the transform produces identical, framework-independent DOM.
 
@@ -189,7 +189,7 @@ suite proves the transform produces identical, framework-independent DOM.
 npm install         # tarballs are committed in vendor/ — offline-first
 npm run dev         # docs site on :5173 (npm run dev:next → :3000)
 npm run test        # the library's vitest suite (230 cases)
-npm run test:e2e    # the 27-test Playwright suite × both apps
+npm run test:e2e    # the 28-test Playwright suite × both apps
 ```
 
 ## Documentation

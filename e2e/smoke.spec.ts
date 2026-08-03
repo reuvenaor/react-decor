@@ -122,3 +122,18 @@ test('theme toggle switches to dark', async ({ page }) => {
   await page.getByRole('menuitemradio', { name: 'Dark' }).click()
   await expect(page.locator('html')).toHaveClass(/dark/)
 })
+
+test('mobile viewport has no horizontal page overflow', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.setViewportSize({ width: 390, height: 844 })
+  for (const path of ['/', '/docs']) {
+    await page.goto(path)
+    await expect
+      .poll(() =>
+        page.evaluate(
+          () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        ),
+      )
+      .toBeLessThanOrEqual(0)
+  }
+})

@@ -61,7 +61,7 @@ npm run build        # rr prerender → examples/react-router/build/client/ + ne
 npm run typecheck    # per-app typegen + at-tsc (rr, next) + at-tsc lib + tsc (node, e2e)
 npm run lint / lint:fix
 npm run test         # vitest — react-decor lib suite (230 cases, lib/react-decor/test)
-npm run test:e2e     # playwright: 27 tests × BOTH apps (react-router + nextjs projects)
+npm run test:e2e     # playwright: 28 tests × BOTH apps (react-router + nextjs projects)
 npm run lib:pack     # after editing lib/react-decor source: re-pack + refresh all installs
 npx wrangler deploy --config examples/react-router/wrangler.toml   # deploy the rr build
 ```
