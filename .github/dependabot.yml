@@ -10,6 +10,17 @@ updates:
       minor-and-patch:
         update-types: ['minor', 'patch']
     open-pull-requests-limit: 5
+    ignore:
+      # eslint 10 is blocked by plugin peer ranges (eslint-plugin-import caps at
+      # ^9); lift when the plugin ecosystem ships eslint-10 peer support.
+      - dependency-name: eslint
+        update-types: ['version-update:semver-major']
+      # React Router 8 is a deliberate migration — all three RR packages move
+      # together in one intentional change, not via per-package bot bumps.
+      - dependency-name: react-router
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@react-router/*'
+        update-types: ['version-update:semver-major']
 
   - package-ecosystem: github-actions
     directory: /
