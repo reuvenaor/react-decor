@@ -175,7 +175,7 @@ class strings in formatted composer components.
 Two example apps ship in this repo and compose the **same shared sections** — every
 user-visible section of the docs site is written with react-decor:
 
-- [examples/react-router](examples/react-router) — React Router 7 (framework mode,
+- [examples/react-router](examples/react-router) — React Router 8 (framework mode,
   SPA + prerender) on Vite 8, compiled by `react-decor/vite`. The docs site.
 - [examples/nextjs](examples/nextjs) — Next 16 (App Router, Turbopack,
   `output: 'export'`), compiled by the `react-decor/webpack` loader.

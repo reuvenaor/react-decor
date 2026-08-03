@@ -10,7 +10,7 @@ components, compiled away into pure nested JSX. The library source lives in
 `lib/react-decor/` (+ `ts-plugin/`); the documentation/demo site ships as **two example
 apps** composing the **same shared sections** from `shared/`:
 
-- **`examples/react-router`** — React Router 7 SPA (`ssr: false`, prerender
+- **`examples/react-router`** — React Router 8 SPA (`ssr: false`, prerender
   `['/', '/docs', '/accessibility']`) on Vite 8, compiled by `react-decor/vite`. Deploys as a
   **Cloudflare Worker serving static assets** (its `wrangler.toml` `[assets]`) — not Pages.
 - **`examples/nextjs`** — Next 16 App Router on Turbopack, `output: 'export'`, compiled by
