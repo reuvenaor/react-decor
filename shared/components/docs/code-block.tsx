@@ -50,12 +50,8 @@ function CopyButton({ code }: { code: string }) {
  * Syntax-highlighted code sample. The `dark` class on the figure forces the dark
  * token values inside regardless of the page theme (custom properties re-resolve on
  * the subtree), so code reads as a classic dark surface in light mode and blends in
- * dark mode — with zero palette literals.
- *
- * The figure is a flex column and the pre flexes + scrolls, so callers may size it
- * (`h-*` via className, or stretched in a flex/grid cell): the header chrome keeps
- * its height, extra space fills as dark surface, overflow scrolls instead of
- * clipping. Unconstrained, it sizes to its content exactly as before.
+ * dark mode — with zero palette literals. Callers may fix or stretch its height:
+ * extra space fills as dark surface, overflowing code scrolls.
  */
 export function CodeBlock({ code, filename, className }: CodeBlockProps) {
   const { t } = useTranslation()

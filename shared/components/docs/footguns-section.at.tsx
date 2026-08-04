@@ -6,9 +6,7 @@ import { SectionHeading } from '@shared/components/site/section-heading.at'
 import { FOOTGUNS } from '@shared/content/footguns'
 
 // Each footgun tile IS a StaggerItem — wrapper on the declaration, key on the map's
-// callsite. The rule chip is a verbatim identifier, rendered mono. The code panes
-// share one fixed height in the two-column view (sized to the tallest snippet; the
-// pre scrolls if one outgrows it) so the six cards read as a uniform grid.
+// callsite. The rule chip is a verbatim identifier, rendered mono.
 @StaggerItem({
   className: 'border-border bg-card/60 flex h-full min-w-0 flex-col gap-3 rounded-xl border p-5',
 })
