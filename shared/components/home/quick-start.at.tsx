@@ -30,7 +30,7 @@ const QuickStartStep = ({
         </h3>
       </div>
       <p className="text-muted-foreground text-sm">{t(`home.quickstart.steps.${step.key}.body`)}</p>
-      <CodeBlock className="mt-auto" filename={step.filename} code={step.snippet} />
+      <CodeBlock className="mt-auto lg:h-72" filename={step.filename} code={step.snippet} />
     </>
   )
 }

@@ -30,7 +30,7 @@ export function SlotSection() {
     <>
       <SectionHeading title={t('docs.slot.title')} intro={t('docs.slot.intro')} />
       <p className="text-muted-foreground max-w-3xl text-base">{t('docs.slot.p1')}</p>
-      <div className="grid items-start gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-2">
         <CodeBlock code={SNIPPET_SLOT_BAD} />
         <CodeBlock code={SNIPPET_SLOT_GOOD} />
       </div>
